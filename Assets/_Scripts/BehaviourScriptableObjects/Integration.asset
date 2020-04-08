@@ -17,6 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 81d7de39cc14b9c41a008b41e4eeb90b, type: 2}
   - {fileID: 11400000, guid: c9923cf7999dc1b46b13edf5d7594310, type: 2}
   scalars:
-  - 10
-  - 10
+  - 4
+  - 1
   - 2

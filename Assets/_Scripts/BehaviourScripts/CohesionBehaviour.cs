@@ -6,6 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Flocking/CohesionBehaviour")]
 public class CohesionBehaviour : Behaviour
 {
+    // Smoothe the movement 
+    Vector2 currentVelocity;
+    public float smoothTimeMovement = 0.7f;
+
     public override Vector2 CalculateMovement(Agent agent, List<Transform> objectsAround, Flocking flock)
     {
         // if no neighbors, no fix needed, return zero
@@ -26,6 +30,12 @@ public class CohesionBehaviour : Behaviour
         
         // create offset from position
         cohesionMovement -= (Vector2) agent.transform.position;
+        cohesionMovement = Vector2.SmoothDamp(
+                agent.transform.up,
+                cohesionMovement,
+                ref currentVelocity,
+                smoothTimeMovement
+        );
         return cohesionMovement;
     }
 }
