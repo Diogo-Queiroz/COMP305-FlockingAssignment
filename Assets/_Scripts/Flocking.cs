@@ -45,6 +45,7 @@ public class Flocking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ReSharper disable once ForCanBeConvertedToForeach
         for (var i = 0; i < _agents.Count; i++)
         {
             var context = GetNearbyObjects(_agents[i]);
@@ -55,13 +56,13 @@ public class Flocking : MonoBehaviour
             );
             
             
-            //var velocity = behaviour.CalculateMovement(
-            //    _agents[i], context, this
-            //);
-            //velocity *= drive;
-            //if (velocity.sqrMagnitude > _squareMaxSpeed)
-            //    velocity = velocity.normalized * maxSpeed;
-            //_agents[i].Move(velocity);
+            var velocity = behaviour.CalculateMovement(
+                _agents[i], context, this
+            );
+            velocity *= drive;
+            if (velocity.sqrMagnitude > _squareMaxSpeed)
+                velocity = velocity.normalized * maxSpeed;
+            _agents[i].Move(velocity);
         }
     }
 
