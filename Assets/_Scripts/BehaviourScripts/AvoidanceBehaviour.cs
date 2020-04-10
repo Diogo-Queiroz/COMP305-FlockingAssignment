@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flocking/AvoidanceBehaviour")]
-public class AvoidanceBehaviour : Behaviour
+public class AvoidanceBehaviour : FilterFlockBehaviour
 {
     public override Vector2 CalculateMovement(Agent agent, List<Transform> objectsAround, Flocking flock)
     {
@@ -19,12 +19,15 @@ public class AvoidanceBehaviour : Behaviour
         //);
         var avoidanceMovement = Vector2.zero;
         var nAvoid = 0;
-        for (var i = 0; i < objectsAround.Count; i++)
+        List<Transform> filterContext = (filter == null)
+            ? objectsAround
+            : filter.filter(agent, objectsAround);
+        for (var i = 0; i < filterContext.Count; i++)
         {
-            if (Vector2.SqrMagnitude(objectsAround[i].position - agent.transform.position) < flock.SquareDistance)
+            if (Vector2.SqrMagnitude(filterContext[i].position - agent.transform.position) < flock.SquareDistance)
             {
                 nAvoid++;
-                avoidanceMovement += (Vector2) (agent.transform.position - objectsAround[i].position);
+                avoidanceMovement += (Vector2) (agent.transform.position - filterContext[i].position);
             }
         }
 

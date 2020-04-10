@@ -5,10 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Agent : MonoBehaviour
 {
+    Flocking agentFlocking;
+    public Flocking AgentFlocking => agentFlocking;
+
     Collider2D agenteCollider2D;
-    public Collider2D AgenteCollider2D
+    public Collider2D AgenteCollider2D => agenteCollider2D;
+
+    public void Init(Flocking flocking)
     {
-        get { return agenteCollider2D; }
+        agentFlocking = flocking;
     }
 
     // Start is called before the first frame update

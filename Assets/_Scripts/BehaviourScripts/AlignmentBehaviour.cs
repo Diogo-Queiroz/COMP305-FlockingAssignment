@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flocking/AlignmentBehaviour")]
-public class AlignmentBehaviour : Behaviour
+public class AlignmentBehaviour : FilterFlockBehaviour
 {
     public override Vector2 CalculateMovement(Agent agent, List<Transform> objectsAround, Flocking flock)
     {
@@ -18,11 +18,14 @@ public class AlignmentBehaviour : Behaviour
         //    (current, t) => current + (Vector2)t.transform.up
         //);
         var alignmentMovement = Vector2.zero;
-        for (var i = 0; i < objectsAround.Count; i++)
+        List<Transform> filterContext = (filter == null)
+            ? objectsAround
+            : filter.filter(agent, objectsAround);
+        for (var i = 0; i < filterContext.Count; i++)
         {
-            alignmentMovement += (Vector2)objectsAround[i].transform.up;
+            alignmentMovement += (Vector2)filterContext[i].transform.up;
         }
-        alignmentMovement /= objectsAround.Count;
+        alignmentMovement /= filterContext.Count;
 
         return alignmentMovement;
     }

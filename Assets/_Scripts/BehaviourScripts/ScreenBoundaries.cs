@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flocking/Screen Boundaries")]
-public class ScreenBoundaries : Behaviour
+public class ScreenBoundaries : FilterFlockBehaviour
 {
     public Vector2 center;
     public float radius = 16f;

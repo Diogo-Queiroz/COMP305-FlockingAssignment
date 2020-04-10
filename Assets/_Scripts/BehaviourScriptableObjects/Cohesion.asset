@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c8067a8e3331b4792f2a126050fce1, type: 3}
   m_Name: Cohesion
   m_EditorClassIdentifier: 
+  filter: {fileID: 11400000, guid: d16e07df7261d9843922e66ed5b3f34c, type: 2}
+  smoothTimeMovement: 0.7

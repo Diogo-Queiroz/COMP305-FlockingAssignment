@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aad13434df24524c811185d087af7cf, type: 3}
-  m_Name: ScreenBoundaries
+  m_Script: {fileID: 11500000, guid: b94647cff0c544c4091e92d79273f45a, type: 3}
+  m_Name: SameFlockFilter
   m_EditorClassIdentifier: 
-  filter: {fileID: 11400000, guid: d16e07df7261d9843922e66ed5b3f34c, type: 2}
-  center: {x: 0, y: 0}
-  radius: 12

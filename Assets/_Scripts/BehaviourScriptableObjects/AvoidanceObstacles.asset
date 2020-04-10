@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aad13434df24524c811185d087af7cf, type: 3}
-  m_Name: ScreenBoundaries
+  m_Script: {fileID: 11500000, guid: f6ca79ea7d6000a448a92de6e3b80ebc, type: 3}
+  m_Name: AvoidanceObstacles
   m_EditorClassIdentifier: 
-  filter: {fileID: 11400000, guid: d16e07df7261d9843922e66ed5b3f34c, type: 2}
-  center: {x: 0, y: 0}
-  radius: 12
+  filter: {fileID: 11400000, guid: ad2b80e9a412ca44bbe6ed576a3287c3, type: 2}

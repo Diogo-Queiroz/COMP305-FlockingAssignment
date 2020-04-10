@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Flocking/CohesionBehaviour")]
-public class CohesionBehaviour : Behaviour
+public class CohesionBehaviour : FilterFlockBehaviour
 {
     // Smoothe the movement 
     Vector2 currentVelocity;
@@ -22,9 +22,12 @@ public class CohesionBehaviour : Behaviour
         //    (current, t) => current + (Vector2) t.position
         //);
         var cohesionMovement = Vector2.zero;
-        for (var i = 0; i < objectsAround.Count; i++)
+        List<Transform> filterContext = (filter == null) 
+                ? objectsAround 
+                : filter.filter(agent, objectsAround);
+        for (var i = 0; i < filterContext.Count; i++)
         {
-            cohesionMovement += (Vector2)objectsAround[i].position;
+            cohesionMovement += (Vector2)filterContext[i].position;
         }
         cohesionMovement /= objectsAround.Count;
         

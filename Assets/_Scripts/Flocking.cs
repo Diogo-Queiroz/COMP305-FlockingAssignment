@@ -38,6 +38,7 @@ public class Flocking : MonoBehaviour
                 transform
             );
             newAgent.name = "Agent" + i;
+            newAgent.Init(this);
             _agents.Add(newAgent);
         }
     }
@@ -51,11 +52,11 @@ public class Flocking : MonoBehaviour
             var context = GetNearbyObjects(_agents[i]);
 
             // FOR DEMONISTRATION
-            _agents[i].GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(
-                Color.white, Color.red, context.Count / 6f
-            );
+            //_agents[i].GetComponentInChildren<SpriteRenderer>().color = Color.Lerp(
+            //    Color.white, Color.red, context.Count / 6f
+            //);
             
-            
+            //Debug.DrawLine(_agents[i].transform.position, context[i].transform.position);
             var velocity = behaviour.CalculateMovement(
                 _agents[i], context, this
             );
@@ -72,6 +73,12 @@ public class Flocking : MonoBehaviour
             agent.transform.position,
             neighborRadiusSize
         );
+        
+        // ReSharper disable once ForCanBeConvertedToForeach
+        for (var i = 0; i < contextCollider2Ds.Length; i++)
+        {
+            Debug.DrawLine(agent.transform.position, contextCollider2Ds[i].transform.position, Color.cyan);
+        }
 
         return contextCollider2Ds.Select(t => t.transform).ToList();
     }
